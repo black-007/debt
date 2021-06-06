@@ -1,0 +1,40 @@
+version: '3'
+services:
+   mysql:
+      restart: always
+      container_name: debt-mysql
+      image: mysql:8.0
+      environment:
+         - MYSQL_ROOT_PASSWORD=456789
+         - "TZ=Asia/Shanghai"
+      volumes:
+         - ./data:/var/lib/mysql
+         - /etc/localtime:/etc/localtime
+      healthcheck:
+         test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost"]
+         interval: 10s
+         timeout: 10s
+         retries: 3          
+  
+      command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+      networks:
+         debt:
+
+   web:
+      restart: always
+      container_name: debt-web
+      image: debt-web
+      volumes:
+         - /etc/localtime:/etc/localtime
+      ports:
+         - 23000:13000
+      depends_on:
+         - mysql
+      networks:
+         debt:
+
+networks:
+  debt:
+    ipam:
+      config:
+      - subnet: 172.166.1.0/24

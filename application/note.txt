@@ -1,0 +1,18 @@
+环境：centos: 8.2
+      docker: 20.10.6
+      docker-compose: 1.29.2
+
+
+注意：
+1.网段：docker-compose 使用网段 172.166.1.0/24 ，有冲突可修改 docker-compose.yaml
+
+2.端口：web 暴露端口13000，映射端口23000，有冲突可修改 docker-compose.yaml
+
+3.镜像：mysql 默认官方镜像 (目前使用8.0) 数据库名称：test02
+        web   dockerfile制作镜像 debt-web 
+
+4.部署服务器清除： 镜像：debt-web  
+                   web-容器：debt-web
+                   mysql-容器：debt-mysql
+                   web-端口：23000
+############ 执行 /bin/bash init.sh 启动服务 #######################

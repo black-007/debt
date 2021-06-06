@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>back</title>
+</head>
+<body bgcolor="#ffe4c4" style="text-align: center">
+<h1><a href="/" style="text-decoration: none"> 返回首页 </a></h1>
+<div>
+
+    <p style="color: #993300">{{ note }}</p>
+    偿还本金： {{ repay_value }}<br>
+    偿还利息： {{ repay_interest }}<br>
+    增加本金:  {{ add_value }}<br>
+    增加利息： {{ add_interest }}<br>
+    总计本金： {{ value }}<br>
+    总计利息： {{ interest }}<br>
+    </h4>
+</div>
+<div>
+    <p> 当前使用本金: {{ used }} </p>
+    <h4 style="color: #28a745"> 剩余应还: {{ repay }}</h4>
+    <p> 总计支付该项目利息: {{ already_interest }} </p>
+</div>
+
+<h1><a href="/data" style="text-decoration: none"> 返回数据 </a></h1>
+<h1><a href="/display" style="text-decoration: none"> 数据展示 </a></h1>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> data </title>
+    <style>
+        .div_box {
+            /*border: #0062cc 2px dashed;*/
+            /*background: #5a6268;*/
+            /*height: 750px;*/
+            /*width: 1500px;*/
+            /*margin: 0 auto;*/
+            text-align: center;
+        }
+        .div_month {
+            /*border: #0062cc 1px dashed;*/
+            float: left;
+            height: 800px;
+            width: 35%;
+            overflow-y:auto; <!-- 如果溢出框，则应该提供滚动机制 -->
+        }
+        .div_month table {
+            table-layout: fixed; <!-- 列宽由表格宽度和列宽度设定 -->
+            word-break: break-all; <!-- 允许单词内换行 -->
+            /*font-size: 15px;*/
+        }
+        .div_month select {
+            font-size: 150%;
+        }
+        .div_month span input{
+            /*border: #007bff 1px dashed;*/
+            color: #18d26e;
+            margin: 20% 0 0 20%;
+            /*width: 120px;*/
+            font-size: 220%;
+        }
+        .div_update {
+            float: left;
+            /*border: #0062cc 1px dashed;*/
+            height: 800px;
+            width: 32%;
+            /*margin: 0 auto;*/
+            font-size: 150%;
+        }
+        .div_update a {
+            /*border: #0062cc 1px dashed;*/
+            display: inline-block;
+            margin: 6% 5%;
+            text-decoration: none;
+            font-size: 200%;
+        }
+        .div_update pre input {
+            /*border: #007bff 1px dashed;*/
+            color: #18d26e;
+            /*height: 50px;*/
+            /*width: 120px;*/
+            font-size: 120%;
+        }
+        .div_debt {
+            /*border: #0062cc 1px dashed;*/
+            float: right;
+            height: 800px;
+            width: 32%;
+            font-size: 110%;
+            overflow-y:auto; <!-- 如果溢出框，则应该提供滚动机制 -->
+        }
+    </style>
+</head>
+<body bgcolor="#f5deb3" >
+<div class="div_box">
+    <div class="div_month">
+        <table border="1" cellspacing="0"  width="100%">
+            <caption style="font-size: 200%"> 月账单 </caption>
+            <tr>
+                <th width="20%"> 时间 </th>
+                <th width="15%"> 名称 </th>
+                <th width="15%"> 金额 </th>
+                <th width="10%"> 已还 </th>
+                <th> 说明 </th>
+            </tr>
+            {% for i in month_bill  %}
+            <tr>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+                <td>{{ i[4] }}</td>
+                <td>{{ i[5] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <form action="/update_month_bill" method="post">
+            <select name="name"  >
+                <option>   云闪付   </option>
+                <option>   微粒贷   </option>
+                <option>  京东白条  </option>
+                <option>    华夏    </option>
+                <option>    上海    </option>
+                <option>   网商贷   </option>
+                <option>    平安    </option>
+                <option>    交通    </option>
+                <option>    招商    </option>
+                <option>    广发    </option>
+                <option>  招联金融  </option>
+                <option>    工商    </option>
+                <option>  新网银行  </option>
+                <option>    花呗    </option>
+                <option>    借呗    </option>
+                <option>    光大    </option>
+                <option>    浦发    </option>
+                <option>  京东金条   </option>
+                <option>    中信    </option>
+            </select>
+            <span><input type="submit" value="确认"></span>
+        </form>
+    </div>
+
+    <div class="div_update">
+        <h2> 更新数据 </h2>
+        <form action="/update_data" method="post">
+            <p>
+                项目：
+                <select name="name" >
+                    <option>   其它   </option>
+                    <option>   三六零   </option>
+                    <option>    新网    </option>
+                    <option> 浦发备用金 </option>
+                    <option>  招联金融  </option>
+                    <option>   云闪付   </option>
+                    <option>   网商贷   </option>
+                    <option>  京东白条  </option>
+                    <option>   微粒贷   </option>
+                    <option>    借呗    </option>
+                    <option>    金条    </option>
+                    <option selected="selected">    花呗    </option>
+                    <option>    华夏    </option>
+                    <option>    上海    </option>
+                    <option>    平安    </option>
+                    <option>    交通    </option>
+                    <option>    招商    </option>
+                    <option>    广发    </option>
+                    <option>    光大    </option>
+                    <option>    浦发    </option>
+                    <option>    中信    </option>
+                    <option>    工商    </option>
+                </select>
+                >
+                字段：
+                <select name="field">
+                    <option>   total  </option>
+                    <option selected="selected">   used   </option>
+                </select>
+            </p>
+            <p>类型：
+                <select name="type" >
+                    <option selected="selected"> 流水 </option>
+                    <option> 网贷 </option>
+                </select>
+            </p>
+            <p><label for="label_red_value">   偿还本金:</label> <input type="text" maxlength="9" name="repay_value" id="label_red_value" ></p>
+            <p><label for="label_red_interest">偿还利息:</label> <input type="text" maxlength="9" name="repay_interest" id="label_red_interest" ></p>
+            <p><label for="label_add_value">   使用本金:</label> <input type="text" maxlength="9" name="add_value" id="label_add_value" ></p>
+            <p><label for="label_add_interest">需还利息:</label> <input type="text" maxlength="9" name="add_interest" id="label_add_interest" ></p>
+            <p><label for="label_note">        说明:   </label></p>
+            <p><textarea cols="34" rows="2" name="note" id="label_note" value=""></textarea></p>
+            <pre><input type="submit" value="更新数据">   <input type="reset" value="清空数据"></pre>
+        </form>
+        <a href="/display"> 最新 </a>
+        <a href="/chart"> 图表 </a>
+        <div><a href="/"> 首页 </a></div>
+    </div>
+
+    <div class="div_debt">
+        <table border="1" cellspacing="0"  width="100%">
+            <caption style="font-size: 200%"> 额度 </caption>
+            <tr>
+                <th> name </th>
+                <th> total </th>
+                <th> remain </th>
+                <th> repay </th>
+            </tr>
+            {% for i in debt_table  %}
+            <tr>
+                <td>{{ i[1] }}</td>
+                <td>{{ i[2] }}</td>
+                <td>{{ i[3] }}</td>
+                <td>{{ i[5] }}</td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td>实际可用</td>
+                <td></td>
+                <td>{{ remain }}</td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>

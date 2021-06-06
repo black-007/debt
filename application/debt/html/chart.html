@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>bar</title>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.min.js"></script>
+    <script type="text/javascript" src="https://assets.pyecharts.org/assets/echarts.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script type="text/javascript">
+            function login() {
+                var chart = echarts.init(document.getElementById('bar'), 'white', {renderer: 'canvas'});
+                $.ajax({
+                    type: "GET",
+                    url: "/barChart",
+                    dataType: 'json',
+                    data: $('#barName').serialize(),
+                    // data: {
+                    //     name: name
+                    // },
+                    success: function (result) {
+                        // console.log(name);
+                        chart.setOption(result);
+                    }
+                });
+            }
+    </script>
+    <style>
+        .bar {
+            height: 600px;
+            width: 50%;
+        }
+        .div_form {
+            /*border: #0062cc 2px dashed;*/
+            height: 100px;
+            /*font-size: 200%;*/
+            overflow-y:auto; <!-- 如果溢出框，则应该提供滚动机制 -->
+        }
+        .div_form select {
+            font-size: 160%;
+        }
+        .div_a a {
+            /*border: #0062cc 2px dashed;*/
+            text-decoration: none;
+            font-size: 300%;
+            margin: 10%;
+        }
+    </style>
+
+</head>
+<body bgcolor="#ffe4c4" style="text-align: center">
+    <div class="div_form">
+        <form id="barName" method="GET" action="##" onsubmit="return false">
+            <select name="field_name">
+                <option>total</option>
+                <option>remain</option>
+                <option selected="selected">repay</option>
+                <option>already_interest</option>
+            </select>
+            <select name="sel_name" >
+                    <option>   三六零   </option>
+                    <option>    新网    </option>
+                    <option> 浦发备用金 </option>
+                    <option>  招联金融  </option>
+                    <option>   云闪付   </option>
+                    <option>   网商贷   </option>
+                    <option>  京东白条  </option>
+                    <option>   微粒贷   </option>
+                    <option>    借呗    </option>
+                    <option>    金条    </option>
+                    <option>    花呗    </option>
+                    <option>    华夏    </option>
+                    <option>    上海    </option>
+                    <option>    平安    </option>
+                    <option>    交通    </option>
+                    <option>    招商    </option>
+                    <option>    广发    </option>
+                    <option>    光大    </option>
+                    <option>    浦发    </option>
+                    <option>    中信    </option>
+                    <option>    工商    </option>
+                </select>
+            <!--<label for="label_input">输入项目:</label> <input type="text" name="input_name" id="label_input" >-->
+            <input style="font-size: 200%" type="button" onclick="login()" value="确认">
+        </form>
+    </div>
+    <div id="bar" class="bar"></div>
+
+    <div class="div_a">
+        <a href="/data"> 数据 </a>
+        <a href="/display"> 最新 </a>
+        <div><a href="/"> 首页 </a></div>
+    </div>
+
+</body>
+</html>

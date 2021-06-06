@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title> 首页 </title>
+    <style>
+        .css01 {
+            border: #007bff 1px dashed;
+            height: 150px;
+            line-height: 150px;
+            text-align: center;
+            margin: 6% 0;
+            background-image: linear-gradient(125deg, #218838, #5295ce, #993300, #1b1e21, #5b80b2);
+            background-size: 300%;
+            animation: bganimation 15s infinite;
+        }
+        .css01 a{
+            width: 10%;
+            display: inline-block;
+            padding: 0 6%;
+            font-size: 45px;
+            text-decoration: none;
+            color: #aaffaa;
+        }
+        .css01 a:hover {
+            background-color: #46d1ff;
+            /*color: #007bff;*/
+        }
+        @keyframes  bganimation{
+            0%{
+                background-position: 0% 50%;
+            }
+            50%{
+                background-position: 100% 50%;
+            }
+            100%{
+                background-position: 0% 50%;
+            }
+        }
+    </style>
+</head>
+<body bgcolor="#ffe4c4">
+<h1> 首页 </h1>
+    <div class="css01">
+        <a href="http://baidu.com" target="_blank"> 文档 </a>
+        <a href="/data" target="_blank"> 数据 </a>
+        <a href="http://baidu.com" target="_blank"> 笔记 </a>
+        <a href="/display" target="_blank"> 展示 </a>
+    </div>
+</body>
+</html>
