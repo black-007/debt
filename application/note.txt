@@ -8,10 +8,10 @@
 
 2.端口：web 暴露端口13000，映射端口23000，有冲突可修改 docker-compose.yaml
 
-3.镜像：mysql 默认官方镜像 (目前使用8.0) 数据库名称：test02
+3.镜像：mysql 默认官方镜像 (目前使用8.0) 数据库名称：debt
         web   dockerfile制作镜像 debt-web 
 
-4.部署服务器清除： 镜像：debt-web  
+4.部署服务器冲突： 镜像：debt-web  
                    web-容器：debt-web
                    mysql-容器：debt-mysql
                    web-端口：23000
